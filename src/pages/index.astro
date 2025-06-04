@@ -1,11 +1,105 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Multiplica tu Inversión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    
 
-<Layout>
-	<Welcome />
-</Layout>
+  <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1054543913267868');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1054543913267868&ev=PageView&noscript=1"
+    /></noscript>
+    
+    <!-- End Meta Pixel Code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Z6X1V9F5H"></script>  
+
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: sans-serif;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+
+      h1, h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+
+      h2 strong {
+        font-size: 2rem;
+        display: block;
+        margin: 0.5rem 0;
+      }
+
+      p {
+        margin: 1rem 0;
+        font-size: 1rem;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 2rem auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      input {
+        padding: 0.8rem;
+        border-radius: 6px;
+        border: none;
+        font-size: 1rem;
+      }
+
+      button {
+        background-color: #00b60a;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        padding: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #009a08;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>¡Descubre Cómo <br /><strong>MULTIPLICAR TU INVERSIÓN</strong></h1>
+    <h2>En Lotes de Habilitación Urbana!<br />Invierte con una inicial desde<br /><strong>S/. 4,000</strong></h2>
+
+    <p>Regístrate y únete al grupo de whatsapp para recibir más información</p>
+
+    <form 
+      method="POST"
+      action="https://script.google.com/macros/s/AKfycbxnXgb9y9QNOKLU-H-2SX7r3u-wWzl0YBzXIAvTNmzA_kdGV9Z6y2taLJk1he9R8L6xcQ/exec"
+      onsubmit="fbq('track', 'Lead'); setTimeout(() => window.location.href = '/gracias', 200);"
+    >
+      <input type="text" name="nombre" placeholder="Tus nombres" required />
+      <input type="tel" name="telefono" placeholder="Tu número de whatsapp" required />
+      <button type="submit">Haz Click Aquí Para Más Información</button>
+    </form>
+  </body>
+</html>
