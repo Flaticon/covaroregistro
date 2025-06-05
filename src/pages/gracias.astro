@@ -8,7 +8,14 @@ import covaroLogo from '../assets/covaro.jpg';
     <title>Gracias por Registrarte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles.css" />
+    
+    <!-- Meta Pixel para contar registro completo -->
+    <script>
+      fbq('track', 'CompleteRegistration');
+    </script>
+
     <style>
+      /* Tu CSS existente */
       body {
         font-family: sans-serif;
         text-align: center;
@@ -74,8 +81,8 @@ import covaroLogo from '../assets/covaro.jpg';
 
     <script>
       // Temporizador y redirección
-      let seconds = 5;
-      const whatsappLink = "https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp"; // CAMBIA este enlace a tu grupo
+      let seconds = 4;
+      const whatsappLink = "https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp";
 
       const interval = setInterval(() => {
         if (seconds <= 0) {
@@ -96,7 +103,7 @@ import covaroLogo from '../assets/covaro.jpg';
       </div>
     </div>
 
-<Image src={covaroLogo} alt="texto descriptivo" height=70 />
+    <Image src={covaroLogo} alt="Logo Covaro" height={70} />
 
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <p>Allí te mandaremos todos los detalles del zoom</p>
@@ -104,3 +111,4 @@ import covaroLogo from '../assets/covaro.jpg';
     <a href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp" class="whatsapp-button">UNIRME AL GRUPO DE WHATSAPP AQUÍ</a>
   </body>
 </html>
+
