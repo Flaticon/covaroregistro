@@ -103,31 +103,34 @@
       <button type="submit">Haz Click Aquí Para Más Información</button>
     </form>
 
-    <script>
-      function handleSubmit(event) {
-        event.preventDefault(); // Evita envío automático
+   <script>
+  function handleSubmit(event) {
+    event.preventDefault(); // Detiene envío nativo
 
-        fbq('track', 'Lead');
+    fbq('track', 'Lead');
 
-        const form = event.target;
-        const data = new FormData(form);
+    const form = event.target;
+    const data = new FormData(form);
 
-        fetch(form.action, {
-          method: 'POST',
-          body: data
-        })
-        .then(response => {
-          if (response.ok) {
-            window.location.href = '/gracias';
-          } else {
-            alert('Hubo un problema al enviar el formulario.');
-          }
-        })
-        .catch(error => {
-          alert('Error de conexión. Intenta de nuevo.');
-          console.error(error);
-        });
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+    })
+    .then(response => {
+      if (response.ok) {
+        // Esperar brevemente por seguridad
+        setTimeout(() => {
+          window.location.href = '/gracias';
+        }, 300);
+      } else {
+        alert('Hubo un problema al enviar el formulario.');
       }
-    </script>
+    })
+    .catch(error => {
+      alert('Error de conexión. Intenta de nuevo.');
+      console.error(error);
+    });
+  }
+</script>
   </body>
 </html>
