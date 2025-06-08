@@ -1,11 +1,12 @@
 ---
 ---
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <title>Multiplica tu Inversión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Meta Pixel Code -->
     <script>
       !function(f,b,e,v,n,t,s)
@@ -103,21 +104,14 @@
         const form = event.target;
         const data = new FormData(form);
 
+        // Disparo rápido sin esperar respuesta
         fetch("https://script.google.com/macros/s/AKfycbxkxXz417YOb6EhO2Z7Ooq6YuyhAM6jPtcKhUCk3IGtoHAfD0J_IeZfKobiO4zk_vq5/exec", {
           method: "POST",
           body: data,
-        })
-        .then((response) => {
-          if (response.ok) {
-            window.location.href = "/gracias";
-          } else {
-            alert("Hubo un error al enviar. Intenta de nuevo.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("No se pudo enviar. Verifica tu conexión.");
         });
+
+        // Redirección inmediata
+        window.location.href = "/gracias";
       });
     </script>
   </body>
