@@ -9,10 +9,25 @@ import covaroLogo from '../assets/covaro.jpg';
     <title>Gracias por Registrarte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Meta Pixel para registrar formulario completado -->
+    <!-- Meta Pixel Code -->
     <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1054543913267868');
+      fbq('track', 'PageView');
       fbq('track', 'CompleteRegistration');
     </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" 
+           src="https://www.facebook.com/tr?id=1054543913267868&ev=CompleteRegistration&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
 
     <style>
       body {
@@ -84,7 +99,7 @@ import covaroLogo from '../assets/covaro.jpg';
   <body>
     <div class="timer">
       <div>
-        <span id="seconds">03</span>
+        <span id="seconds">05</span>
         <small>Segundos</small>
       </div>
     </div>
@@ -95,33 +110,59 @@ import covaroLogo from '../assets/covaro.jpg';
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <h3>Allí te mandaremos todos los detalles del zoom</h3>
 
-    <!-- Enlace como respaldo si el redireccionamiento falla -->
-    <a
-      href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp"
-      class="whatsapp-button"
-      target="_blank"
-    >
-      UNIRME AL GRUPO DE WHATSAPP AQUÍ
-    </a>
+    <!-- Botón de WhatsApp -->
+    <button id="whatsappBtn" class="whatsapp-button" disabled>
+      UNIRME AL GRUPO DE WHATSAPP AQUÍ (<span id="countdown">5</span>)
+    </button>
 
     <script>
-      let seconds = 3;
+      // Configuración
       const whatsappLink = "https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp";
+      let seconds = 5;
+      const countdownElement = document.getElementById('countdown');
+      const secondsElement = document.getElementById('seconds');
+      const whatsappBtn = document.getElementById('whatsappBtn');
 
+      // Actualizar contadores
+      function updateCounters() {
+        secondsElement.textContent = String(seconds).padStart(2, '0');
+        countdownElement.textContent = seconds;
+      }
+
+      // Habilitar botón y redireccionar
+      function enableButtonAndRedirect() {
+        whatsappBtn.disabled = false;
+        whatsappBtn.innerHTML = 'UNIRME AL GRUPO DE WHATSAPP AQUÍ';
+        
+        whatsappBtn.addEventListener('click', function() {
+          // Disparar evento de Lead
+          if(typeof fbq !== 'undefined') {
+            fbq('track', 'Lead');
+          }
+          
+          // Redirección a WhatsApp
+          window.location.href = whatsappLink;
+        });
+      }
+
+      // Contador regresivo
       const interval = setInterval(() => {
+        seconds--;
+        updateCounters();
+        
         if (seconds <= 0) {
           clearInterval(interval);
-
-          // Disparo del evento Lead antes de redirigir
-          fbq('track', 'Lead');
-
-          // Redirección automática al grupo de WhatsApp
-          window.location.href = whatsappLink;
-        } else {
-          document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-          seconds--;
+          enableButtonAndRedirect();
         }
       }, 1000);
+
+      // Inicializar contadores
+      updateCounters();
+      
+      // Disparar CompleteRegistration al cargar la página
+      if(typeof fbq !== 'undefined') {
+        fbq('track', 'CompleteRegistration');
+      }
     </script>
   </body>
 </html>
