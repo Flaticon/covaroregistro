@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import covaroLogo from '../assets/covaro.jpg';
 ---
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -88,12 +89,13 @@ import covaroLogo from '../assets/covaro.jpg';
       </div>
     </div>
 
-    <!-- Logo -->
-    <Image src={covaroLogo} alt="Logo Covaro" height={70} />
+    <!-- Logo con Astro -->
+    <Image src={covaroLogo} alt="Logo Covaro" height={70} class="logo" />
 
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <h3>Allí te mandaremos todos los detalles del zoom</h3>
 
+    <!-- Enlace correcto sin preventDefault -->
     <a
       href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp"
       class="whatsapp-button"
@@ -104,7 +106,7 @@ import covaroLogo from '../assets/covaro.jpg';
     </a>
 
     <script>
-      // Solo se muestra un contador (sin redirección)
+      // Solo contador visual sin redirección
       let seconds = 3;
       const interval = setInterval(() => {
         if (seconds <= 0) {
@@ -115,7 +117,7 @@ import covaroLogo from '../assets/covaro.jpg';
         }
       }, 1000);
 
-      // Evento de Facebook Pixel: Lead solo si hacen clic
+      // Disparo del evento Lead sin bloquear el enlace
       document.getElementById("whatsapp-link").addEventListener("click", function () {
         fbq('track', 'Lead');
       });
