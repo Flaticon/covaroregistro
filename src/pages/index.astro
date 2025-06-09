@@ -3,121 +3,115 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Gracias por Registrarte</title>
+    <title>Multiplica tu Inversión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Meta Pixel para registrar formulario completado -->
+
+    <!-- Meta Pixel Code -->
     <script>
-      fbq('track', 'CompleteRegistration');
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1054543913267868');
+      fbq('track', 'PageView');
     </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1054543913267868&ev=PageView&noscript=1"/>
+    </noscript>
 
     <style>
       body {
+        background-color: #000;
+        color: #fff;
         font-family: sans-serif;
         text-align: center;
-        padding: 2rem;
-        background: #ffffff;
+        padding: 2rem 1rem;
       }
 
-      .logo {
-        margin: 1rem auto;
-        max-width: 200px;
-      }
-
-      h2 {
-        color: #6a1b9a;
-        font-weight: 700;
+      h1, h2 {
         font-size: 1.8rem;
-        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
       }
 
-      h3 {
-        font-size: 1.8rem;
-        font-weight: 600;
+      h2 strong {
+        font-size: 2rem;
+        display: block;
+        margin: 0.5rem 0;
+      }
+
+      p {
         margin: 1rem 0;
+        font-size: 1rem;
       }
 
-      .whatsapp-button {
-        background-color: #1e9600;
-        color: white;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        transition: 0.3s;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 1rem;
-      }
-
-      .whatsapp-button:hover {
-        background-color: #158c00;
-      }
-
-      .timer {
-        font-size: 1.5rem;
-        margin: 1rem auto;
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        color: #444;
-      }
-
-      .timer div {
+      form {
+        max-width: 400px;
+        margin: 2rem auto;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        gap: 1rem;
       }
 
-      .timer span {
-        font-size: 2rem;
+      input {
+        padding: 0.8rem;
+        border-radius: 6px;
+        border: none;
+        font-size: 1rem;
+      }
+
+      button {
+        background-color: #00b60a;
+        color: white;
         font-weight: bold;
+        font-size: 1.2rem;
+        padding: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #009a08;
       }
     </style>
   </head>
   <body>
-    <div class="timer">
-      <div>
-        <span id="seconds">03</span>
-        <small>Segundos</small>
-      </div>
-    </div>
+    <h1>¡Descubre Cómo <br /><strong>MULTIPLICAR TU INVERSIÓN</strong></h1>
+    <h2>Lotes inscritos en Registros Públicos!<br />Invierte con una inicial desde<br /><strong>S/. 4,000</strong></h2>
 
-    <!-- Logo -->
-    <img src="/ruta/del/logo.jpg" alt="Logo Covaro" height="70" class="logo" />
+    <p>Regístrate y únete al grupo de whatsapp para recibir más información</p>
 
-    <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
-    <h3>Allí te mandaremos todos los detalles del zoom</h3>
-
-    <a
-      href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp"
-      class="whatsapp-button"
-      id="whatsapp-link"
-      target="_blank"
-    >
-      UNIRME AL GRUPO DE WHATSAPP AQUÍ
-    </a>
+    <form id="formulario">
+      <input type="text" name="nombre" placeholder="Tus nombres" required />
+      <input type="tel" name="telefono" placeholder="Tu número de whatsapp" required />
+      <button type="submit">Haz Click Aquí Para Más Información</button>
+    </form>
 
     <script>
-      // Solo se muestra un contador (sin redirección)
-      let seconds = 3;
-      const interval = setInterval(() => {
-        if (seconds <= 0) {
-          clearInterval(interval);
-        } else {
-          document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-          seconds--;
-        }
-      }, 1000);
+      document.getElementById("formulario").addEventListener("submit", function (event) {
+        event.preventDefault();
 
-      // Evento de Facebook Pixel: Lead solo si hacen clic
-      document.getElementById("whatsapp-link").addEventListener("click", function () {
         fbq('track', 'Lead');
+
+        const form = event.target;
+        const data = new FormData(form);
+
+        // Disparo rápido sin esperar respuesta
+        fetch("https://script.google.com/macros/s/AKfycbxkxXz417YOb6EhO2Z7Ooq6YuyhAM6jPtcKhUCk3IGtoHAfD0J_IeZfKobiO4zk_vq5/exec", {
+          method: "POST",
+          body: data,
+        });
+
+        // Redirección inmediata
+        window.location.href = "/gracias";
       });
     </script>
   </body>
 </html>
-
