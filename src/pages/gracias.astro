@@ -7,15 +7,13 @@ import covaroLogo from '../assets/covaro.jpg';
     <meta charset="UTF-8" />
     <title>Gracias por Registrarte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
     
-    <!-- Meta Pixel para contar registro completo -->
+    <!-- Meta Pixel para registrar formulario completado -->
     <script>
       fbq('track', 'CompleteRegistration');
     </script>
 
     <style>
-      /* Tu CSS existente */
       body {
         font-family: sans-serif;
         text-align: center;
@@ -52,6 +50,9 @@ import covaroLogo from '../assets/covaro.jpg';
         cursor: pointer;
         box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         transition: 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 1rem;
       }
 
       .whatsapp-button:hover {
@@ -78,22 +79,6 @@ import covaroLogo from '../assets/covaro.jpg';
         font-weight: bold;
       }
     </style>
-
-    <script>
-      // Temporizador y redirección
-      let seconds = 3;
-      const whatsappLink = "https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp";
-
-      const interval = setInterval(() => {
-        if (seconds <= 0) {
-          clearInterval(interval);
-          window.location.href = whatsappLink;
-        } else {
-          document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-          seconds--;
-        }
-      }, 1000);
-    </script>
   </head>
   <body>
     <div class="timer">
@@ -103,12 +88,37 @@ import covaroLogo from '../assets/covaro.jpg';
       </div>
     </div>
 
-    <Image src={covaroLogo} alt="Logo Covaro" height={70} />
+    <!-- Logo -->
+    <img src="/ruta/del/logo.jpg" alt="Logo Covaro" height="70" class="logo" />
 
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
-    <h3>Allí te mandaremos todos los detalles del zoom!</h3>
+    <h3>Allí te mandaremos todos los detalles del zoom</h3>
 
-    <a href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp" class="whatsapp-button">UNIRME AL GRUPO DE WHATSAPP AQUÍ</a>
+    <a
+      href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp"
+      class="whatsapp-button"
+      id="whatsapp-link"
+      target="_blank"
+    >
+      UNIRME AL GRUPO DE WHATSAPP AQUÍ
+    </a>
+
+    <script>
+      // Solo se muestra un contador (sin redirección)
+      let seconds = 3;
+      const interval = setInterval(() => {
+        if (seconds <= 0) {
+          clearInterval(interval);
+        } else {
+          document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+          seconds--;
+        }
+      }, 1000);
+
+      // Evento de Facebook Pixel: Lead solo si hacen clic
+      document.getElementById("whatsapp-link").addEventListener("click", function () {
+        fbq('track', 'Lead');
+      });
+    </script>
   </body>
 </html>
-
