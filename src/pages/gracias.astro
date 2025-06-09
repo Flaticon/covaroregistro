@@ -110,55 +110,45 @@ import covaroLogo from '../assets/covaro.jpg';
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <h3>Allí te mandaremos todos los detalles del zoom</h3>
 
-    <!-- Botón de WhatsApp -->
-    <button id="whatsappBtn" class="whatsapp-button" disabled>
-      UNIRME AL GRUPO DE WHATSAPP AQUÍ (<span id="countdown">5</span>)
-    </button>
+    <!-- Botón de respaldo -->
+    <a href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp" class="whatsapp-button" id="whatsappBtn" target="_blank">
+      UNIRME AL GRUPO DE WHATSAPP AQUÍ
+    </a>
 
     <script>
       // Configuración
       const whatsappLink = "https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp";
       let seconds = 5;
-      const countdownElement = document.getElementById('countdown');
       const secondsElement = document.getElementById('seconds');
       const whatsappBtn = document.getElementById('whatsappBtn');
 
-      // Actualizar contadores
-      function updateCounters() {
-        secondsElement.textContent = String(seconds).padStart(2, '0');
-        countdownElement.textContent = seconds;
-      }
-
-      // Habilitar botón y redireccionar
-      function enableButtonAndRedirect() {
-        whatsappBtn.disabled = false;
-        whatsappBtn.innerHTML = 'UNIRME AL GRUPO DE WHATSAPP AQUÍ';
+      // Función para redireccionar automáticamente
+      function redirectToWhatsApp() {
+        // Disparar evento de Lead
+        if(typeof fbq !== 'undefined') {
+          fbq('track', 'Lead');
+        }
         
-        whatsappBtn.addEventListener('click', function() {
-          // Disparar evento de Lead
-          if(typeof fbq !== 'undefined') {
-            fbq('track', 'Lead');
-          }
-          
-          // Redirección a WhatsApp
-          window.location.href = whatsappLink;
-        });
+        // Redirección automática
+        window.location.href = whatsappLink;
+        
+        // Respaldo: si no redirige en 1 segundo, abrir en nueva pestaña
+        setTimeout(() => {
+          window.open(whatsappLink, '_blank');
+        }, 1000);
       }
 
       // Contador regresivo
       const interval = setInterval(() => {
         seconds--;
-        updateCounters();
+        secondsElement.textContent = String(seconds).padStart(2, '0');
         
         if (seconds <= 0) {
           clearInterval(interval);
-          enableButtonAndRedirect();
+          redirectToWhatsApp();
         }
       }, 1000);
 
-      // Inicializar contadores
-      updateCounters();
-      
       // Disparar CompleteRegistration al cargar la página
       if(typeof fbq !== 'undefined') {
         fbq('track', 'CompleteRegistration');
