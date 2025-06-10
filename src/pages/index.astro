@@ -94,23 +94,32 @@
       <button type="submit">Haz Click Aquí Para Más Información</button>
     </form>
 
-    <script>
-      document.getElementById("formulario").addEventListener("submit", function (event) {
-        event.preventDefault();
+  document.getElementById("formulario").addEventListener("submit", function (event) {
+  event.preventDefault();
 
-        // Evento Lead: aquí sí debe ir
-        fbq('track', 'Lead');
+  fbq('track', 'Lead'); // Dispara evento Pixel
 
-        const form = event.target;
-        const data = new FormData(form);
+  const form = event.target;
+  const data = new FormData(form);
 
-        fetch("https://script.google.com/macros/s/AKfycbxkxXz417YOb6EhO2Z7Ooq6YuyhAM6jPtcKhUCk3IGtoHAfD0J_IeZfKobiO4zk_vq5/exec", {
-          method: "POST",
-          body: data,
-        });
+  fetch("https://script.google.com/macros/s/AKfycbxkxXz417YOb6EhO2Z7Ooq6YuyhAM6jPtcKhUCk3IGtoHAfD0J_IeZfKobiO4zk_vq5/exec", {
+    method: "POST",
+    body: data,
+  })
+  .then((res) => res.json())
+  .then((res) => {
+    if (res.status === "ok") {
+      window.location.href = "/gracias"; // Redirige solo si todo fue bien
+    } else {
+      alert("Hubo un error al registrar. Intenta de nuevo.");
+    }
+  })
+  .catch((err) => {
+    console.error("Error al enviar el formulario:", err);
+    alert("Error de conexión. Intenta más tarde.");
+  });
+});
 
-        window.location.href = "/gracias";
-      });
-    </script>
+
   </body>
 </html>
