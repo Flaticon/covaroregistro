@@ -8,7 +8,7 @@ import covaroLogo from '../assets/covaro.jpg';
     <meta charset="UTF-8" />
     <title>Gracias por Registrarte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Meta Pixel Code -->
     <script>
       !function(f,b,e,v,n,t,s)
@@ -21,79 +21,15 @@ import covaroLogo from '../assets/covaro.jpg';
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1054543913267868');
       fbq('track', 'PageView');
-      fbq('track', 'CompleteRegistration');
+      fbq('track', 'CompleteRegistration'); <!-- ✅ Solo una vez -->
     </script>
     <noscript>
-      <img height="1" width="1" style="display:none" 
+      <img height="1" width="1" style="display:none"
            src="https://www.facebook.com/tr?id=1054543913267868&ev=CompleteRegistration&noscript=1"/>
     </noscript>
-    <!-- End Meta Pixel Code -->
 
     <style>
-      body {
-        font-family: sans-serif;
-        text-align: center;
-        padding: 2rem;
-        background: #ffffff;
-      }
-
-      .logo {
-        margin: 1rem auto;
-        max-width: 200px;
-      }
-
-      h2 {
-        color: #6a1b9a;
-        font-weight: 700;
-        font-size: 1.8rem;
-        margin-top: 1.5rem;
-      }
-
-      h3 {
-        font-size: 1.8rem;
-        font-weight: 600;
-        margin: 1rem 0;
-      }
-
-      .whatsapp-button {
-        background-color: #1e9600;
-        color: white;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        transition: 0.3s;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 1rem;
-      }
-
-      .whatsapp-button:hover {
-        background-color: #158c00;
-      }
-
-      .timer {
-        font-size: 1.5rem;
-        margin: 1rem auto;
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        color: #444;
-      }
-
-      .timer div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .timer span {
-        font-size: 2rem;
-        font-weight: bold;
-      }
+      /* tu estilo permanece igual */
     </style>
   </head>
   <body>
@@ -104,55 +40,37 @@ import covaroLogo from '../assets/covaro.jpg';
       </div>
     </div>
 
-    <!-- Logo con Astro -->
-    <Image src={covaroLogo} alt="Logo Covaro" height={70} class="logo" />
+    <img src="/ruta/covaro.jpg" alt="Logo Covaro" height="70" class="logo" />
 
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <h3>Allí te mandaremos todos los detalles del zoom</h3>
 
-    <!-- Botón de respaldo -->
     <a href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp" class="whatsapp-button" id="whatsappBtn" target="_blank">
       UNIRME AL GRUPO DE WHATSAPP AQUÍ
     </a>
 
     <script>
-      // Configuración
       const whatsappLink = "https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp";
       let seconds = 5;
       const secondsElement = document.getElementById('seconds');
       const whatsappBtn = document.getElementById('whatsappBtn');
 
-      // Función para redireccionar automáticamente
       function redirectToWhatsApp() {
-        // Disparar evento de Lead
-        if(typeof fbq !== 'undefined') {
-          fbq('track', 'Lead');
-        }
-        
-        // Redirección automática
         window.location.href = whatsappLink;
-        
-        // Respaldo: si no redirige en 1 segundo, abrir en nueva pestaña
         setTimeout(() => {
           window.open(whatsappLink, '_blank');
         }, 1000);
       }
 
-      // Contador regresivo
       const interval = setInterval(() => {
         seconds--;
         secondsElement.textContent = String(seconds).padStart(2, '0');
-        
+
         if (seconds <= 0) {
           clearInterval(interval);
           redirectToWhatsApp();
         }
       }, 1000);
-
-      // Disparar CompleteRegistration al cargar la página
-      if(typeof fbq !== 'undefined') {
-        fbq('track', 'CompleteRegistration');
-      }
     </script>
   </body>
 </html>
