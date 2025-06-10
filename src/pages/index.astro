@@ -94,31 +94,33 @@
       <button type="submit">Haz Click Aquí Para Más Información</button>
     </form>
 
-  document.getElementById("formulario").addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  fbq('track', 'Lead'); // Dispara evento Pixel
-
-  const form = event.target;
-  const data = new FormData(form);
-
-  fetch("https://script.google.com/macros/s/AKfycbx34HUizBA7kUVEyaSvVY7OK6iuoD0ZuJN_V70rjdKu86PR5tvfES9Bpx5_6zxXufRJ/exec", {
-    method: "POST",
-    body: data,
-  })
-  .then((res) => res.json())
-  .then((res) => {
-    if (res.status === "ok") {
-      window.location.href = "/gracias"; // Redirige solo si todo fue bien
-    } else {
-      alert("Hubo un error al registrar. Intenta de nuevo.");
-    }
-  })
-  .catch((err) => {
-    console.error("Error al enviar el formulario:", err);
-    alert("Error de conexión. Intenta más tarde.");
-  });
-});
+    <script>
+    document.getElementById("formulario").addEventListener("submit", async function (event) {
+      event.preventDefault();
+  
+      // Disparo del pixel 'Lead'
+      fbq('track', 'Lead');
+  
+      const form = event.target;
+      const data = new FormData(form);
+  
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxkxXz417YOb6EhO2Z7Ooq6YuyhAM6jPtcKhUCk3IGtoHAfD0J_IeZfKobiO4zk_vq5/exec", {
+          method: "POST",
+          body: data,
+        });
+  
+        if (response.ok) {
+          window.location.href = "/gracias";
+        } else {
+          alert("Hubo un error al registrar tus datos. Intenta de nuevo.");
+        }
+      } catch (error) {
+        console.error("Error al enviar formulario:", error);
+        alert("Hubo un error de conexión. Intenta nuevamente.");
+      }
+    });
+  </script>
 
 
   </body>
