@@ -130,6 +130,7 @@
       clearTimeout(timeout);
 
       if (res.ok) {
+        fbq('track', 'CompleteRegistration');
         window.location.href = "/gracias";
       } else {
         throw new Error("Error del servidor");
