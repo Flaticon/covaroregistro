@@ -1,8 +1,3 @@
----
-import { Image } from 'astro:assets';
-import covaroLogo from '../assets/covaro.jpg';
----
-
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -33,11 +28,6 @@ import covaroLogo from '../assets/covaro.jpg';
         text-align: center;
         padding: 2rem;
         background: #ffffff;
-      }
-
-      .logo {
-        margin: 1rem auto;
-        max-width: 200px;
       }
 
       h2 {
@@ -97,12 +87,10 @@ import covaroLogo from '../assets/covaro.jpg';
   <body>
     <div class="timer">
       <div>
-        <span id="seconds">03</span>
+        <span id="seconds">05</span>
         <small>Segundos</small>
       </div>
     </div>
-
-    <img src="/covaro.jpg" alt="Logo Covaro" height="70" class="logo" />
 
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <h3>Allí te mandaremos todos los detalles del zoom</h3>
@@ -113,19 +101,13 @@ import covaroLogo from '../assets/covaro.jpg';
 
     <script>
       const whatsappLink = "https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp";
-      let seconds = 3;
+      let seconds = 5;
       const secondsElement = document.getElementById('seconds');
       const whatsappBtn = document.getElementById('whatsappBtn');
 
-      // Disparar el evento solo cuando hagan clic en el botón
-      whatsappBtn.addEventListener('click', function() {
-        fbq('track', 'CompleteRegistration');
+      whatsappBtn.addEventListener('click', () => {
+        fbq('track', 'CompleteRegistration'); // Se cuenta como conversión solo si hace clic
       });
-
-      function redirectToWhatsApp() {
-        fbq('track', 'CompleteRegistration'); // También cuenta si el redireccionamiento es automático
-        window.location.href = whatsappLink;
-      }
 
       const interval = setInterval(() => {
         seconds--;
@@ -133,10 +115,9 @@ import covaroLogo from '../assets/covaro.jpg';
 
         if (seconds <= 0) {
           clearInterval(interval);
-          redirectToWhatsApp();
+          window.location.href = whatsappLink;
         }
       }, 1000);
     </script>
   </body>
 </html>
-
