@@ -95,61 +95,50 @@
     </form>
 
     <script>
-  document.getElementById("formulario").addEventListener("submit", async function(event) {
-  event.preventDefault();
-  
-  // Optimización: Referencias directas a los elementos
-  const form = event.target;
-  const nombre = form.nombre.value;
-  const telefono = form.telefono.value;
-  const submitButton = form.querySelector('button[type="submit"]');
-  
-  // Validación rápida antes de enviar
-  if (!nombre || !telefono) {
+ document.getElementById("formulario").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+  const { nombre, telefono } = form;
+  const btn = form.querySelector('button[type="submit"]');
+
+  if (!nombre.value || !telefono.value) {
     alert("Por favor completa todos los campos");
     return;
   }
 
-  // Optimización: Estado de carga mínimo
-  submitButton.disabled = true;
-  
+  btn.disabled = true;
+
+  const params = new URLSearchParams({ nombre: nombre.value, telefono: telefono.value });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000);
+
   try {
-    // Optimización: URLSearchParams es más rápido que FormData para este caso
-    const params = new URLSearchParams();
-    params.append('nombre', nombre);
-    params.append('telefono', telefono);
-
-    // Optimización: Timeout para evitar esperas infinitas
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000); // 5 segundos máximo
-
-    const response = await fetch("https://script.google.com/macros/s/AKfycbypbzA2HP7R40k6hj8XXrtYsbgMveJw1kY9xJRfp5cCrIa_lsfPzYd_OWLxdo-QPbeA/exec", {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbypbzA2HP7R40k6hj8XXrtYsbgMveJw1kY9xJRfp5cCrIa_lsfPzYd_OWLxdo-QPbeA/exec", {
       method: "POST",
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: params,
-      signal: controller.signal
+      signal: controller.signal,
     });
 
     clearTimeout(timeout);
 
-    // Optimización: No esperar por el análisis JSON si solo necesitas OK
-    if (response.ok) {
-      fbq('track', 'CompleteRegistration');
+    if (res.ok) {
+      fbq("track", "CompleteRegistration");
       window.location.href = "/gracias";
     } else {
       throw new Error("Error en el servidor");
     }
-  } catch (error) {
-    console.error("Error optimizado:", error);
-    alert(error.name === "AbortError" 
-      ? "La solicitud tardó demasiado. Intenta de nuevo." 
+  } catch (err) {
+    console.error("Error optimizado:", err);
+    alert(err.name === "AbortError"
+      ? "La solicitud tardó demasiado. Intenta de nuevo."
       : "Error al enviar el formulario");
   } finally {
-    submitButton.disabled = false;
+    btn.disabled = false;
   }
 });
+
   </script>
   </body>
 </html>
