@@ -9,7 +9,25 @@ import covaroLogo from '../assets/covaro.jpg';
     <title>Gracias por Registrarte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1054543913267868');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1054543913267868&ev=PageView&noscript=1"/>
+    </noscript>
+
+    <style>
       body {
         font-family: sans-serif;
         text-align: center;
@@ -79,24 +97,35 @@ import covaroLogo from '../assets/covaro.jpg';
   <body>
     <div class="timer">
       <div>
-        <span id="seconds">05</span>
+        <span id="seconds">03</span>
         <small>Segundos</small>
       </div>
     </div>
 
-    <Image src={covaroLogo} alt="Logo Covaro" height={70} class="logo" />
+    <img src="/covaro.jpg" alt="Logo Covaro" height="70" class="logo" />
 
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <h3>Allí te mandaremos todos los detalles del zoom</h3>
-  
-     <a href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp" class="whatsapp-button" id="whatsappBtn">
-    UNIRME AL GRUPO DE WHATSAPP AQUÍ
+
+    <a href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp" class="whatsapp-button" id="whatsappBtn" target="_blank">
+      UNIRME AL GRUPO DE WHATSAPP AQUÍ
     </a>
 
     <script>
       const whatsappLink = "https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp";
-      let seconds = 5;
+      let seconds = 3;
       const secondsElement = document.getElementById('seconds');
+      const whatsappBtn = document.getElementById('whatsappBtn');
+
+      // Disparar el evento solo cuando hagan clic en el botón
+      whatsappBtn.addEventListener('click', function() {
+        fbq('track', 'CompleteRegistration');
+      });
+
+      function redirectToWhatsApp() {
+        fbq('track', 'CompleteRegistration'); // También cuenta si el redireccionamiento es automático
+        window.location.href = whatsappLink;
+      }
 
       const interval = setInterval(() => {
         seconds--;
@@ -104,19 +133,10 @@ import covaroLogo from '../assets/covaro.jpg';
 
         if (seconds <= 0) {
           clearInterval(interval);
-          window.location.href = whatsappLink;
+          redirectToWhatsApp();
         }
       }, 1000);
-
-      // En caso hagan clic antes de los 3 segundos
-      document.getElementById('whatsappBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = whatsappLink;
-      });
     </script>
-
-
-
-
   </body>
 </html>
+
