@@ -88,23 +88,15 @@ import covaroLogo from '../assets/covaro.jpg';
 
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <h3>Allí te mandaremos todos los detalles del zoom</h3>
-
-    <a href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp" class="whatsapp-button" id="whatsappBtn" target="_blank">
-      UNIRME AL GRUPO DE WHATSAPP AQUÍ
+  
+     <a href="https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp" class="whatsapp-button" id="whatsappBtn">
+    UNIRME AL GRUPO DE WHATSAPP AQUÍ
     </a>
 
     <script>
       const whatsappLink = "https://chat.whatsapp.com/GCozvVkGq5qHAj3Z8QyWUp";
       let seconds = 5;
       const secondsElement = document.getElementById('seconds');
-      const whatsappBtn = document.getElementById('whatsappBtn');
-
-      function redirectToWhatsApp() {
-        window.location.href = whatsappLink;
-        setTimeout(() => {
-          window.open(whatsappLink, '_blank');
-        }, 1000);
-      }
 
       const interval = setInterval(() => {
         seconds--;
@@ -112,9 +104,19 @@ import covaroLogo from '../assets/covaro.jpg';
 
         if (seconds <= 0) {
           clearInterval(interval);
-          redirectToWhatsApp();
+          window.location.href = whatsappLink;
         }
       }, 1000);
+
+      // En caso hagan clic antes de los 3 segundos
+      document.getElementById('whatsappBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = whatsappLink;
+      });
     </script>
+
+
+
+
   </body>
 </html>
