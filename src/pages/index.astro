@@ -123,7 +123,7 @@
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000); // 5 segundos máximo
 
-    const response = await fetch("TU_URL_DE_APPS_SCRIPT", {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbypbzA2HP7R40k6hj8XXrtYsbgMveJw1kY9xJRfp5cCrIa_lsfPzYd_OWLxdo-QPbeA/exec", {
       method: "POST",
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
