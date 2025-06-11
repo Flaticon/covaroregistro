@@ -86,12 +86,40 @@
 
     <p>Regístrate y únete al grupo de whatsapp para recibir más información</p>
 
-    <form id="formulario" action="https://formspree.io/f/xyzjwkbz" method="POST">
+    <form id="formulario">
       <input type="text" name="nombre" placeholder="Tus nombres" required />
       <input type="tel" name="telefono" placeholder="Tu número de whatsapp" required />
-      <!-- Redirección automática a gracias -->
-      <input type="hidden" name="_redirect" value="https://covaroregistro.vercel.app/gracias" />
       <button type="submit">Haz Click Aquí Para Más Información</button>
     </form>
+
+    <script>
+      document.getElementById("formulario").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+
+        const formData = new FormData(form);
+
+        try {
+          const res = await fetch('https://formspree.io/f/xyzjwkbz', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            window.location.href = "/gracias"; // Cambia por la URL exacta de tu página de gracias
+          } else {
+            alert('Hubo un error al enviar el formulario. Inténtalo de nuevo.');
+          }
+        } catch (error) {
+          alert('Error al enviar. Inténtalo nuevamente.');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    </script>
   </body>
 </html>
+
