@@ -106,11 +106,10 @@
           body: data,
         });
 
- 
-    const result = await response.json(); // Leer respuesta como JSON
 
-   if (result.status === "ok") {
-  window.location.href = "/gracias";
+   if (response.ok) {
+          fbq('track', 'CompleteRegistration');
+          window.location.href = "/gracias";
 } else {
   alert(result.message || "Hubo un error al registrar tus datos. Intenta de nuevo.");
 }
