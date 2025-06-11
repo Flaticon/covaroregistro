@@ -93,31 +93,10 @@
     </form>
 
     <script>
-      document.getElementById("formulario").addEventListener("submit", async (e) => {
+      document.getElementById("formulario").addEventListener("submit", (e) => {
         e.preventDefault();
-        const form = e.target;
-        const btn = form.querySelector('button[type="submit"]');
-        btn.disabled = true;
-
-        const formData = new FormData(form);
-
-        try {
-          const res = await fetch('https://formspree.io/f/xyzjwkbz', {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (res.ok) {
-            window.location.href = "/gracias"; // Cambia por la URL exacta de tu página de gracias
-          } else {
-            alert('Hubo un error al enviar el formulario. Inténtalo de nuevo.');
-          }
-        } catch (error) {
-          alert('Error al enviar. Inténtalo nuevamente.');
-        } finally {
-          btn.disabled = false;
-        }
+        // Redireccionamos directamente a la página de gracias
+        window.location.href = "/gracias"; // Cambia por la ruta exacta de tu página
       });
     </script>
   </body>
