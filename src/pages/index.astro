@@ -97,10 +97,6 @@
     <script>
     document.getElementById("formulario").addEventListener("submit", async function (event) {
       event.preventDefault();
-  
-      // Disparo del pixel 'Lead'
-      fbq('track', 'Lead');
-  
       const form = event.target;
       const data = new FormData(form);
   
@@ -111,6 +107,7 @@
         });
   
         if (response.ok) {
+          fbq('track', 'CompleteRegistration');
           window.location.href = "/gracias";
         } else {
           alert("Hubo un error al registrar tus datos. Intenta de nuevo.");
