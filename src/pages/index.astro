@@ -118,12 +118,14 @@
     const timeout = setTimeout(() => controller.abort(), 5000);
 
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbw83o-m1JSA2LCXQ9QmFbcC3FpK3PpPz3KH1jGqnuZmkqFMQNxJDnoH_TKmrx5yPN4k/exec", {
+       const res = await fetch("https://script.google.com/macros/s/AKfycbxIV0dqgir0vfBCzVTKFR5aUMpbjcaXNhWEsEzFEaIyZ2tJmfKl9hMWI1633-uQGOe4/exec
+      ", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: params,
         signal: controller.signal
       });
+
 
       clearTimeout(timeout);
 
