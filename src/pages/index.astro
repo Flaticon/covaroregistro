@@ -94,50 +94,56 @@
       <button type="submit">Haz Click Aquí Para Más Información</button>
     </form>
 
-    <script>
- document.getElementById("formulario").addEventListener("submit", async (e) => {
-  e.preventDefault();
+ <form id="formulario">
+  <input type="text" name="nombre" placeholder="Nombre" required>
+  <input type="tel" name="telefono" placeholder="Teléfono" required>
+  <button type="submit">Enviar</button>
+</form>
 
-  const form = e.target;
-  const { nombre, telefono } = form;
-  const btn = form.querySelector('button[type="submit"]');
+<script>
+  document.getElementById("formulario").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const { nombre, telefono } = form;
+    const btn = form.querySelector('button[type="submit"]');
 
-  if (!nombre.value || !telefono.value) {
-    alert("Por favor completa todos los campos");
-    return;
-  }
+    if (!nombre.value || !telefono.value) {
+      alert("Por favor completa todos los campos");
+      return;
+    }
 
-  btn.disabled = true;
+    btn.disabled = true;
 
-  const params = new URLSearchParams({ nombre: nombre.value, telefono: telefono.value });
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 5000);
-
-  try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbypbzA2HP7R40k6hj8XXrtYsbgMveJw1kY9xJRfp5cCrIa_lsfPzYd_OWLxdo-QPbeA/exec", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params,
-      signal: controller.signal,
+    const params = new URLSearchParams({
+      nombre: nombre.value,
+      telefono: telefono.value
     });
 
-    clearTimeout(timeout);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
 
-    if (res.ok) {
-      fbq("track", "CompleteRegistration");
-      window.location.href = "/gracias";
-    } else {
-      throw new Error("Error en el servidor");
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbzmkMl4zHWjT46yAvyAvdr4YnGOS0VluZGq0_Kb-2HxCgL27TyB6N-9zdA8MvqkOo3H/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params,
+        signal: controller.signal
+      });
+
+      clearTimeout(timeout);
+
+      if (res.ok) {
+        window.location.href = "/gracias";
+      } else {
+        throw new Error("Error del servidor");
+      }
+    } catch (err) {
+      alert(err.name === "AbortError" ? "Tiempo de espera agotado" : "Error al enviar");
+    } finally {
+      btn.disabled = false;
     }
-  } catch (err) {
-    console.error("Error optimizado:", err);
-    alert(err.name === "AbortError"
-      ? "La solicitud tardó demasiado. Intenta de nuevo."
-      : "Error al enviar el formulario");
-  } finally {
-    btn.disabled = false;
-  }
-});
+  });
+</script>
 
   </script>
   </body>
