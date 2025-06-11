@@ -88,55 +88,10 @@
 
     <p>Regístrate y únete al grupo de whatsapp para recibir más información</p>
 
-    <form id="formulario">
+    <form id="formulario" action="https://formspree.io/f/xyzjwkbz" method="POST">
       <input type="text" name="nombre" placeholder="Tus nombres" required />
       <input type="tel" name="telefono" placeholder="Tu número de whatsapp" required />
       <button type="submit">Haz Click Aquí Para Más Información</button>
     </form>
-
-    <script>
-      document.getElementById("formulario").addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const { nombre, telefono } = form;
-        const btn = form.querySelector('button[type="submit"]');
-
-        if (!nombre.value || !telefono.value) {
-          alert("Por favor completa todos los campos");
-          return;
-        }
-
-        btn.disabled = true;
-
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 5000);
-
-        try {
-          const res = await fetch(`https://script.google.com/macros/s/AKfycbyU180q7uXX-TjwqILkmCMUyo4QEFu0ppmhXg3rfQYIK1wdvgr_bkd0l-874p9Hr-Z-/exec`, 
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: new URLSearchParams({
-                nombre: nombre.value,
-                telefono: telefono.value
-              }),
-              signal: controller.signal
-            });
-
-          clearTimeout(timeout);
-
-          if (res.ok) {
-            window.location.href = "/gracias";
-          } else {
-            throw new Error("Error del servidor");
-          }
-        } catch (err) {
-          alert(err.name === "AbortError" ? "Tiempo de espera agotado" : "Error al enviar");
-        } finally {
-          btn.disabled = false;
-        }
-      });
-    </script>
   </body>
 </html>
-
