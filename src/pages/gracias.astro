@@ -5,7 +5,7 @@ import covaroLogo from '../assets/covaro.jpg';
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Gracias por Registrarte</title>
+    <title>Multiplica tu Inversión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
      <!-- Meta Pixel Code -->
@@ -28,100 +28,81 @@ import covaroLogo from '../assets/covaro.jpg';
 
     <style>
       body {
+        background-color: #000;
+        color: #fff;
         font-family: sans-serif;
         text-align: center;
-        padding: 2rem;
-        background: #ffffff;
+        padding: 2rem 1rem;
       }
 
-      h2 {
-        color: #6a1b9a;
-        font-weight: 700;
+      h1, h2 {
         font-size: 1.8rem;
-        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
       }
 
-      h3 {
-        font-size: 1.8rem;
-        font-weight: 600;
+      h2 strong {
+        font-size: 2rem;
+        display: block;
+        margin: 0.5rem 0;
+      }
+
+      p {
         margin: 1rem 0;
+        font-size: 1rem;
       }
 
-      .whatsapp-button {
-        background-color: #1e9600;
-        color: white;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        transition: 0.3s;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 1rem;
-      }
-
-      .whatsapp-button:hover {
-        background-color: #158c00;
-      }
-
-      .timer {
-        font-size: 1.5rem;
-        margin: 1rem auto;
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        color: #444;
-      }
-
-      .timer div {
+      form {
+        max-width: 400px;
+        margin: 2rem auto;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        gap: 1rem;
       }
 
-      .timer span {
-        font-size: 2rem;
+      input {
+        padding: 0.8rem;
+        border-radius: 6px;
+        border: none;
+        font-size: 1rem;
+      }
+
+      button {
+        background-color: #00b60a;
+        color: white;
         font-weight: bold;
+        font-size: 1.2rem;
+        padding: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #009a08;
       }
     </style>
   </head>
   <body>
-    <div class="timer">
-      <div>
-        <span id="seconds">05</span>
-        <small>Segundos</small>
-      </div>
-    </div>
-    <Image src={covaroLogo} alt="Covaro Logo" width={150} height={50} />
-    <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
-    <h3>Allí te mandaremos todos los detalles del zoom</h3>
+    <h1>¡Descubre Cómo <br /><strong>MULTIPLICAR TU INVERSIÓN</strong></h1>
+    <h2>Lotes inscritos en Virú Registros Públicos!<br />Desde<br /><strong>S/. 11,000</strong></h2>
+    <h3>Financiado desde S/.4,000</h3>
+    <p>A 1 minuto de la Av. Viru y 2 minutos del Mercado la Alameda</p>
+    <p>Regístrate y únete al grupo de whatsapp para recibir más información</p>
 
-    <a href="https://chat.whatsapp.com/G8xeAauOLSwLDhuwm4r6vx?mode=r_c" class="whatsapp-button" id="whatsappBtn" target="_blank">
-      UNIRME AL GRUPO DE WHATSAPP AQUÍ
-    </a>
+    <form id="formulario">
+      <input type="text" name="nombre" placeholder="Tus nombres" required />
+      <input type="tel" name="telefono" placeholder="Tu número de whatsapp" required />
+      <button type="submit">Haz Click Aquí Para Más Información</button>
+    </form>
 
     <script>
-      const whatsappLink = "https://chat.whatsapp.com/G8xeAauOLSwLDhuwm4r6vx?mode=r_c";
-      let seconds = 5;
-      const secondsElement = document.getElementById('seconds');
-      const whatsappBtn = document.getElementById('whatsappBtn');
-
-      whatsappBtn.addEventListener('click', () => {
-        fbq('track', 'CompleteRegistration'); // Se cuenta como conversión solo si hace clic
+      document.getElementById("formulario").addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Redireccionamos directamente a la página de gracias
+        window.location.href = "/gracias"; // Cambia por la ruta exacta de tu página
       });
-
-      const interval = setInterval(() => {
-        seconds--;
-        secondsElement.textContent = String(seconds).padStart(2, '0');
-
-        if (seconds <= 0) {
-          clearInterval(interval);
-          window.location.href = whatsappLink;
-        }
-      }, 1000);
     </script>
   </body>
 </html>
