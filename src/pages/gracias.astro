@@ -7,7 +7,6 @@ import covaroLogo from '../assets/covaro.jpg';
     <meta charset="UTF-8" />
     <title>Gracias por Registrarte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <!-- Meta Pixel Code -->
     <script>
       !function(f,b,e,v,n,t,s)
@@ -20,39 +19,34 @@ import covaroLogo from '../assets/covaro.jpg';
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1054543913267868');
       fbq('track', 'PageView');
-      fbq('track', 'CompleteRegistration'); 
+      // Removido CompleteRegistration de aquí - se disparará solo al hacer clic
     </script>
     <noscript>
       <img height="1" width="1" style="display:none"
-           src="https://www.facebook.com/tr?id=1054543913267868&ev=CompleteRegistration&noscript=1"/>
+           src="https://www.facebook.com/tr?id=1054543913267868&ev=PageView&noscript=1"/>
     </noscript>
-
-<style>
+    <style>
       body {
         font-family: sans-serif;
         text-align: center;
         padding: 2rem;
         background: #ffffff;
       }
-
       .logo {
         margin: 1rem auto;
         max-width: 200px;
       }
-
       h2 {
         color: #6a1b9a;
         font-weight: 700;
         font-size: 1.8rem;
         margin-top: 1.5rem;
       }
-
       h3 {
         font-size: 1.8rem;
         font-weight: 600;
         margin: 1rem 0;
       }
-
       .whatsapp-button {
         background-color: #1e9600;
         color: white;
@@ -68,11 +62,9 @@ import covaroLogo from '../assets/covaro.jpg';
         display: inline-block;
         margin-top: 1rem;
       }
-
       .whatsapp-button:hover {
         background-color: #158c00;
       }
-
       .timer {
         font-size: 1.5rem;
         margin: 1rem auto;
@@ -81,13 +73,11 @@ import covaroLogo from '../assets/covaro.jpg';
         gap: 1rem;
         color: #444;
       }
-
       .timer div {
         display: flex;
         flex-direction: column;
         align-items: center;
       }
-
       .timer span {
         font-size: 2rem;
         font-weight: bold;
@@ -101,36 +91,33 @@ import covaroLogo from '../assets/covaro.jpg';
         <small>Segundos</small>
       </div>
     </div>
-
     <Image src={covaroLogo} alt="Logo Covaro" height={70} class="logo" />
-
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <h3>Allí te mandaremos todos los detalles del zoom</h3>
-
     <a href="https://chat.whatsapp.com/DXPWINlX4Mg6CLXzfiHGfk?mode=r_c" class="whatsapp-button" id="whatsappBtn" target="_blank">
       UNIRME AL GRUPO DE WHATSAPP AQUÍ
     </a>
-
     <script>
       const whatsappLink = "https://chat.whatsapp.com/DXPWINlX4Mg6CLXzfiHGfk?mode=r_c";
       let seconds = 5;
       const secondsElement = document.getElementById('seconds');
       const whatsappBtn = document.getElementById('whatsappBtn');
-
-        whatsappBtn.addEventListener('click', () => {
-        fbq('track', 'CompleteRegistration'); // Se cuenta como conversión solo si hace clic
+      
+      // Solo disparar CompleteRegistration cuando el usuario hace clic
+      whatsappBtn.addEventListener('click', () => {
+        fbq('track', 'CompleteRegistration');
       });
-
+      
       const interval = setInterval(() => {
         seconds--;
         secondsElement.textContent = String(seconds).padStart(2, '0');
-
         if (seconds <= 0) {
           clearInterval(interval);
+          // También disparar el evento cuando se redirige automáticamente
+          fbq('track', 'CompleteRegistration');
           window.location.href = whatsappLink;
         }
       }, 1000);
     </script>
   </body>
 </html>
-
