@@ -117,12 +117,9 @@ import covaroLogo from '../assets/covaro.jpg';
       const secondsElement = document.getElementById('seconds');
       const whatsappBtn = document.getElementById('whatsappBtn');
 
-      function redirectToWhatsApp() {
-        window.location.href = whatsappLink;
-        setTimeout(() => {
-          window.open(whatsappLink, '_blank');
-        }, 1000);
-      }
+        whatsappBtn.addEventListener('click', () => {
+        fbq('track', 'CompleteRegistration'); // Se cuenta como conversión solo si hace clic
+      });
 
       const interval = setInterval(() => {
         seconds--;
@@ -130,7 +127,7 @@ import covaroLogo from '../assets/covaro.jpg';
 
         if (seconds <= 0) {
           clearInterval(interval);
-          redirectToWhatsApp();
+          window.location.href = whatsappLink;
         }
       }, 1000);
     </script>
