@@ -7,24 +7,22 @@ import covaroLogo from '../assets/covaro.jpg';
     <meta charset="UTF-8" />
     <title>Gracias por Registrarte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-     <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1298667371869235');
-    fbq('track', 'PageView');
+       !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1298667371869235');
+      fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
+   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1298667371869235&ev=PageView&noscript=1"
     /></noscript>
-    <!-- End Meta Pixel Code -->
 
     <style>
       body {
@@ -33,20 +31,21 @@ import covaroLogo from '../assets/covaro.jpg';
         padding: 2rem;
         background: #ffffff;
       }
-
+      .logo {
+        margin: 1rem auto;
+        max-width: 200px;
+      }
       h2 {
         color: #6a1b9a;
         font-weight: 700;
         font-size: 1.8rem;
         margin-top: 1.5rem;
       }
-
       h3 {
         font-size: 1.8rem;
         font-weight: 600;
         margin: 1rem 0;
       }
-
       .whatsapp-button {
         background-color: #1e9600;
         color: white;
@@ -62,11 +61,9 @@ import covaroLogo from '../assets/covaro.jpg';
         display: inline-block;
         margin-top: 1rem;
       }
-
       .whatsapp-button:hover {
         background-color: #158c00;
       }
-
       .timer {
         font-size: 1.5rem;
         margin: 1rem auto;
@@ -75,13 +72,11 @@ import covaroLogo from '../assets/covaro.jpg';
         gap: 1rem;
         color: #444;
       }
-
       .timer div {
         display: flex;
         flex-direction: column;
         align-items: center;
       }
-
       .timer span {
         font-size: 2rem;
         font-weight: bold;
@@ -95,28 +90,26 @@ import covaroLogo from '../assets/covaro.jpg';
         <small>Segundos</small>
       </div>
     </div>
-    <Image src={covaroLogo} alt="Covaro Logo" width={150} height={50} />
+    <Image src={covaroLogo} alt="Logo Covaro" height={70} class="logo" />
     <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
     <h3>Allí te mandaremos todos los detalles del zoom</h3>
-
-    <a href="https://chat.whatsapp.com/G8xeAauOLSwLDhuwm4r6vx?mode=r_c" class="whatsapp-button" id="whatsappBtn" target="_blank">
+    <a href="https://chat.whatsapp.com/DXPWINlX4Mg6CLXzfiHGfk?mode=r_c" class="whatsapp-button" id="whatsappBtn" target="_blank">
       UNIRME AL GRUPO DE WHATSAPP AQUÍ
     </a>
-
     <script>
-      const whatsappLink = "https://chat.whatsapp.com/G8xeAauOLSwLDhuwm4r6vx?mode=r_c";
+      const whatsappLink = "https://chat.whatsapp.com/DXPWINlX4Mg6CLXzfiHGfk?mode=r_c";
       let seconds = 5;
       const secondsElement = document.getElementById('seconds');
       const whatsappBtn = document.getElementById('whatsappBtn');
-
+      
+      // Solo disparar CompleteRegistration cuando el usuario hace clic
       whatsappBtn.addEventListener('click', () => {
-        fbq('track', 'CompleteRegistration'); // Se cuenta como conversión solo si hace clic
+        fbq('track', 'CompleteRegistration');
       });
-
+      
       const interval = setInterval(() => {
         seconds--;
         secondsElement.textContent = String(seconds).padStart(2, '0');
-
         if (seconds <= 0) {
           clearInterval(interval);
           window.location.href = whatsappLink;
