@@ -48,8 +48,8 @@
 
       body {
         background:
-          radial-gradient(700px 350px at 50% -10%, rgba(255, 255, 255, 0.18), transparent 65%),
-          linear-gradient(180deg, #3FB0E0 0%, #2A8FDB 30%, #1976D2 65%, #0D47A1 100%);
+          radial-gradient(800px 400px at 50% -8%, rgba(255, 203, 5, 0.18), transparent 70%),
+          linear-gradient(180deg, #FDF8EE 0%, #F4ECD8 100%);
         color: var(--negro);
         font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
         min-height: 100vh;
@@ -177,9 +177,10 @@
       }
 
       .subtitulo {
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: var(--negro);
+        font-size: 1.1rem;
+        font-style: italic;
+        font-weight: 500;
+        color: var(--azul-deep);
         margin-top: 0.5rem;
         line-height: 1.4;
       }
@@ -187,11 +188,10 @@
       /* Imagen hero */
       .hero-image {
         width: 100%;
-        aspect-ratio: 16 / 9;
         margin: 1.2rem 0;
-        border-radius: 18px;
+        border-radius: 10px;
         overflow: hidden;
-        border: 4px solid var(--amarillo);
+        border: 2px solid var(--amarillo);
         box-shadow:
           0 0 0 1px rgba(15, 15, 15, 0.08),
           0 14px 34px rgba(15, 15, 15, 0.28);
@@ -200,8 +200,7 @@
 
       .hero-image img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
         display: block;
         transition: transform 0.6s ease;
       }
@@ -214,106 +213,6 @@
         inset: 0;
         background: linear-gradient(180deg, transparent 65%, rgba(42, 143, 219, 0.28) 100%);
         pointer-events: none;
-      }
-
-      /* Sticker promo circular — eco geométrico del logo Bellavista
-         (anclado a la esquina superior derecha sin invadir el faro/casa) */
-      .precio-sticker {
-        position: absolute;
-        top: 2%;
-        right: 2%;
-        width: 38%;
-        aspect-ratio: 1 / 1;
-        background:
-          radial-gradient(circle at 32% 28%, #FFE066 0%, #FFCB05 55%, #F0B900 100%);
-        border: 3px solid var(--rojo);
-        border-radius: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: var(--rojo);
-        transform: rotate(-6deg);
-        box-shadow:
-          0 8px 18px rgba(0, 0, 0, 0.3),
-          0 2px 0 rgba(0, 0, 0, 0.18);
-        z-index: 3;
-        animation: stickerPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s both,
-                   stickerWobble 6s ease-in-out 1.4s infinite;
-        padding: 0.55rem 0.45rem;
-      }
-
-      /* Anillo punteado interno — look clásico de sticker promocional */
-      .precio-sticker::before {
-        content: '';
-        position: absolute;
-        inset: 5px;
-        border: 1.5px dashed rgba(193, 18, 31, 0.55);
-        border-radius: 50%;
-        pointer-events: none;
-      }
-
-      .precio-sticker .ps-top {
-        font-size: 0.6rem;
-        font-weight: 900;
-        letter-spacing: 0.8px;
-        text-transform: uppercase;
-        line-height: 1;
-        color: var(--rojo);
-      }
-
-      .precio-sticker .ps-precio {
-        font-size: 1.55rem;
-        font-weight: 900;
-        line-height: 1;
-        margin: 0.2rem 0 0.25rem;
-        letter-spacing: -1px;
-        color: var(--rojo);
-        text-decoration: underline;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 3px;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-      }
-
-      .precio-sticker .ps-precio small {
-        font-size: 0.78rem;
-        font-weight: 800;
-        vertical-align: top;
-        text-decoration: none;
-        display: inline-block;
-        margin-right: 2px;
-      }
-
-      .precio-sticker .ps-bottom {
-        font-size: 0.5rem;
-        font-weight: 800;
-        letter-spacing: 0.2px;
-        text-transform: uppercase;
-        line-height: 1.1;
-        color: var(--negro);
-        background: rgba(255, 255, 255, 0.6);
-        padding: 0.1rem 0.4rem;
-        border-radius: 999px;
-        margin-top: 0.05rem;
-      }
-
-      @keyframes stickerPop {
-        0% { opacity: 0; transform: rotate(-6deg) scale(0.4); }
-        60% { transform: rotate(-6deg) scale(1.08); }
-        100% { opacity: 1; transform: rotate(-6deg) scale(1); }
-      }
-
-      @keyframes stickerWobble {
-        0%, 100% { transform: rotate(-6deg) scale(1); }
-        50% { transform: rotate(-3deg) scale(1.025); }
-      }
-
-      @media (min-width: 600px) {
-        .precio-sticker .ps-precio { font-size: 1.85rem; }
-        .precio-sticker .ps-precio small { font-size: 0.95rem; }
-        .precio-sticker .ps-top { font-size: 0.72rem; }
-        .precio-sticker .ps-bottom { font-size: 0.6rem; }
       }
 
       /* CTA arriba — botón PRINCIPAL de la página, debe ser el más destacado.
@@ -427,7 +326,8 @@
         height: 28px;
         display: block;
         margin: 0.4rem 0;
-        color: rgba(255, 255, 255, 0.75);
+        color: var(--naranja);
+        opacity: 0.55;
       }
 
       /* Sección de amenidades */
@@ -455,73 +355,6 @@
         font-weight: 500;
         color: var(--negro);
         margin-bottom: 0.8rem;
-      }
-
-      /* Precio destacado — glass card que absorbe el celeste del fondo */
-      .precio-box {
-        background: rgba(255, 255, 255, 0.88);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        padding: 1.4rem 1.1rem 1.2rem;
-        border-radius: 18px;
-        margin: 1.4rem 0;
-        box-shadow: 0 14px 32px rgba(13, 71, 161, 0.3);
-        border: 2px solid var(--amarillo);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .precio-box .label {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: var(--azul-deep);
-        font-weight: 800;
-      }
-
-      .precio-box .precio {
-        font-size: 2.9rem;
-        font-weight: 900;
-        margin: 0.1rem 0 0.6rem;
-        color: var(--rojo);
-        letter-spacing: -1px;
-      }
-
-      .precio-box .precio small {
-        font-size: 1.1rem;
-        font-weight: 700;
-        opacity: 0.85;
-        vertical-align: top;
-        margin-right: 2px;
-      }
-
-      .precio-detalles {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.6rem;
-        margin-top: 0.6rem;
-      }
-
-      .precio-detalles .item {
-        background: rgba(91, 196, 237, 0.18);
-        border: 1px solid rgba(91, 196, 237, 0.45);
-        border-radius: 12px;
-        padding: 0.7rem 0.5rem;
-      }
-
-      .precio-detalles .item .mini-label {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: var(--azul-deep);
-        font-weight: 800;
-      }
-
-      .precio-detalles .item .valor {
-        font-size: 1.25rem;
-        font-weight: 900;
-        margin-top: 0.15rem;
-        color: var(--rojo);
       }
 
       /* Beneficios / features — tarjetas blancas */
@@ -706,7 +539,6 @@
         h1 { font-size: 2.1rem; }
         h1 .destacado { font-size: 3.6rem; }
         h1 .kicker { font-size: 1.05rem; }
-        .precio-box .precio { font-size: 3.2rem; }
         .lf-ico { font-size: 1.9rem; }
         .lf-text { font-size: 0.78rem; }
       }
@@ -718,7 +550,7 @@
         <img src="/logo.jpg" alt="Logo Residencial Bellavista de Pacasmayo" />
       </div>
 
-      <span class="badge">🌊 Oportunidad Frente al Mar</span>
+      <span class="badge">🌊 Oportunidad de Inversión Frente al Mar</span>
 
       <h1>
         <span class="kicker">Tu Lote en</span>
@@ -728,11 +560,6 @@
 
       <div class="hero-image">
         <img src="/bellavista.jpg" alt="Residencial Bellavista de Pacasmayo" />
-        <div class="precio-sticker" aria-label="Lotes desde S/. 18,000">
-          <span class="ps-top">Lotes Desde</span>
-          <span class="ps-precio"><small>S/</small>18,000</span>
-          <span class="ps-bottom">Inicial S/ 2,500</span>
-        </div>
       </div>
 
       <a href="/gracias" class="cta-arriba" aria-label="Únete al grupo de WhatsApp para más información">
@@ -768,21 +595,6 @@
         <path d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30 L1440,60 L0,60 Z" fill="currentColor"/>
       </svg>
 
-      <div class="precio-box">
-        <div class="label">Desde</div>
-        <div class="precio"><small>S/.</small>18,000</div>
-        <div class="precio-detalles">
-          <div class="item">
-            <div class="mini-label">Inicial desde</div>
-            <div class="valor">S/. 2,500</div>
-          </div>
-          <div class="item">
-            <div class="mini-label">Financiamiento</div>
-            <div class="valor">Hasta 36 meses</div>
-          </div>
-        </div>
-      </div>
-
       <div class="features">
         <div class="feature">
           <span class="icono">🌊</span>
@@ -799,6 +611,14 @@
         <div class="feature">
           <span class="icono">✅</span>
           Financiamiento directo
+        </div>
+        <div class="feature">
+          <span class="icono">💰</span>
+          Inicial desde S/. 2,500
+        </div>
+        <div class="feature">
+          <span class="icono">🗓️</span>
+          Hasta 36 meses
         </div>
       </div>
 
