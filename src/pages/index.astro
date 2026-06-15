@@ -20,11 +20,11 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1298667371869235');
+    fbq('init', '3419376661598245');
     fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1298667371869235&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=3419376661598245&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
 
@@ -562,11 +562,15 @@
         <img src="/bellavista.jpg" alt="Residencial Bellavista de Pacasmayo" />
       </div>
 
-      <a href="/gracias" class="cta-arriba" aria-label="Únete al grupo de WhatsApp para más información">
-        <span class="cta-arriba-ico">📲</span>
-        <span>Únete al grupo de WhatsApp</span>
-        <span class="cta-arriba-arrow">➜</span>
-      </a>
+      <div class="form-card">
+        <h3>📲 Regístrate y únete al grupo de WhatsApp</h3>
+        <form id="formulario">
+          <input type="text" name="nombre" placeholder="Tus nombres" required />
+          <input type="tel" name="telefono" placeholder="Tu número de WhatsApp" required />
+          <button type="submit">Quiero Más Información ➜</button>
+        </form>
+        <p class="trust">🔒 Tus datos están seguros con nosotros</p>
+      </div>
 
       <div class="lifestyle-band">
         <div class="lf-item">
@@ -637,15 +641,11 @@
         <path d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30 L1440,60 L0,60 Z" fill="currentColor"/>
       </svg>
 
-      <div class="form-card">
-        <h3>📲 Regístrate y únete al grupo de WhatsApp</h3>
-        <form id="formulario">
-          <input type="text" name="nombre" placeholder="Tus nombres" required />
-          <input type="tel" name="telefono" placeholder="Tu número de WhatsApp" required />
-          <button type="submit">Quiero Más Información ➜</button>
-        </form>
-        <p class="trust">🔒 Tus datos están seguros con nosotros</p>
-      </div>
+      <a href="/gracias" class="cta-arriba" aria-label="Únete al grupo de WhatsApp para más información">
+        <span class="cta-arriba-ico">📲</span>
+        <span>Únete al grupo de WhatsApp</span>
+        <span class="cta-arriba-arrow">➜</span>
+      </a>
 
       <div class="trust-row">
         <span>📄 Registros Públicos</span>
@@ -657,6 +657,8 @@
     <script>
       document.getElementById("formulario").addEventListener("submit", (e) => {
         e.preventDefault();
+        // El usuario dejó sus datos → se considera un Lead
+        fbq('track', 'Lead');
         window.location.href = "/gracias";
       });
     </script>

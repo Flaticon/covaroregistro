@@ -5,8 +5,14 @@ import covaroLogo from '../assets/covaro.jpg';
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Gracias por Registrarte</title>
+    <title>Gracias por Registrarte | Residencial Bellavista</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts: Poppins (body) + Pacifico (script para el título marca) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
     <!-- Meta Pixel Code -->
     <script>
        !function(f,b,e,v,n,t,s)
@@ -17,99 +23,292 @@ import covaroLogo from '../assets/covaro.jpg';
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1298667371869235');
+      fbq('init', '3419376661598245');
       fbq('track', 'PageView');
     </script>
    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1298667371869235&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=3419376661598245&ev=PageView&noscript=1"
     /></noscript>
+    <!-- End Meta Pixel Code -->
 
     <style>
+      :root {
+        --azul: #5BC4ED;
+        --azul-deep: #2A8FDB;
+        --amarillo: #FFCB05;
+        --naranja: #F57C00;
+        --negro: #0F0F0F;
+        --verde-wa: #00b60a;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
       body {
-        font-family: sans-serif;
-        text-align: center;
-        padding: 2rem;
-        background: #ffffff;
-      }
-      .logo {
-        margin: 1rem auto;
-        max-width: 200px;
-      }
-      h2 {
-        color: #6a1b9a;
-        font-weight: 700;
-        font-size: 1.8rem;
-        margin-top: 1.5rem;
-      }
-      h3 {
-        font-size: 1.8rem;
-        font-weight: 600;
-        margin: 1rem 0;
-      }
-      .whatsapp-button {
-        background-color: #1e9600;
-        color: white;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        transition: 0.3s;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 1rem;
-      }
-      .whatsapp-button:hover {
-        background-color: #158c00;
-      }
-      .timer {
-        font-size: 1.5rem;
-        margin: 1rem auto;
+        background:
+          radial-gradient(800px 400px at 50% -8%, rgba(255, 203, 5, 0.18), transparent 70%),
+          linear-gradient(180deg, #FDF8EE 0%, #F4ECD8 100%);
+        color: var(--negro);
+        font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+        min-height: 100vh;
         display: flex;
+        align-items: center;
         justify-content: center;
-        gap: 1rem;
-        color: #444;
+        padding: 2rem 1.2rem;
+        overflow-x: hidden;
       }
-      .timer div {
+
+      .card {
+        width: 100%;
+        max-width: 520px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 2px solid var(--amarillo);
+        border-radius: 24px;
+        padding: 2.4rem 1.8rem 2.6rem;
+        text-align: center;
+        box-shadow: 0 22px 50px rgba(13, 71, 161, 0.3);
+        animation: fadeUp 0.6s ease-out both;
+      }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Logo circular — mismo anchor de marca que la landing */
+      .logo-marca {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 1.2rem;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #fff;
+        box-shadow:
+          0 0 0 3px #fff,
+          0 0 0 6px var(--azul),
+          0 12px 30px rgba(15, 15, 15, 0.3);
+        animation: logoEntrada 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+
+      .logo-marca img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      @keyframes logoEntrada {
+        0% { opacity: 0; transform: scale(0.4) rotate(-15deg); }
+        60% { transform: scale(1.06) rotate(2deg); }
+        100% { opacity: 1; transform: scale(1) rotate(0); }
+      }
+
+      .check {
+        font-size: 3.2rem;
+        line-height: 1;
+        margin-bottom: 0.6rem;
+        animation: pop 0.5s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+
+      @keyframes pop {
+        0% { opacity: 0; transform: scale(0.3); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      h1 {
+        color: var(--azul-deep);
+        font-weight: 900;
+        font-size: 2.1rem;
+        line-height: 1.15;
+        margin-bottom: 0.7rem;
+      }
+
+      h1 .marca {
+        display: block;
+        font-family: 'Pacifico', cursive;
+        font-weight: 400;
+        font-size: 2.4rem;
+        background: linear-gradient(180deg, #FFCB05 0%, #FFB300 50%, #F57C00 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-top: 0.2rem;
+      }
+
+      .sub {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--negro);
+        line-height: 1.4;
+        margin-bottom: 1.6rem;
+      }
+
+      .sub strong { color: var(--naranja); }
+
+      /* Timer grande y destacado */
+      .timer-wrap {
+        margin: 0 auto 1.6rem;
+      }
+
+      .timer-label {
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #666;
+        margin-bottom: 0.6rem;
+      }
+
+      .timer-circle {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto;
+        border-radius: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        background: #fff;
+        border: 4px solid var(--azul);
+        box-shadow: 0 10px 26px rgba(42, 143, 219, 0.35);
+        animation: ticktock 1s ease-in-out infinite;
       }
-      .timer span {
-        font-size: 2rem;
-        font-weight: bold;
+
+      .timer-circle #seconds {
+        font-size: 3.4rem;
+        font-weight: 900;
+        line-height: 1;
+        color: var(--azul-deep);
+      }
+
+      .timer-circle small {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #888;
+        letter-spacing: 0.5px;
+      }
+
+      @keyframes ticktock {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.06); }
+      }
+
+      /* Botón WhatsApp — grande, verde reconocible, glow */
+      .whatsapp-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        background: linear-gradient(135deg, #00a209 0%, #00c70b 50%, #1ee021 100%);
+        color: #fff;
+        padding: 1.4rem 1.4rem;
+        font-size: 1.3rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+        border: none;
+        border-radius: 18px;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow:
+          0 16px 34px rgba(0, 182, 10, 0.55),
+          inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+        transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        animation: ctaPulse 2.2s ease-in-out 0.8s infinite;
+      }
+
+      .whatsapp-button:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.05);
+        box-shadow:
+          0 20px 42px rgba(0, 182, 10, 0.7),
+          inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+      }
+
+      .whatsapp-button:active { transform: translateY(0); }
+
+      .whatsapp-button .wa-ico { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
+
+      @keyframes ctaPulse {
+        0%, 100% {
+          box-shadow:
+            0 16px 34px rgba(0, 182, 10, 0.55),
+            inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+        }
+        50% {
+          box-shadow:
+            0 18px 40px rgba(0, 182, 10, 0.8),
+            0 0 0 8px rgba(0, 182, 10, 0.2),
+            inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+        }
+      }
+
+      .hint {
+        margin-top: 1.1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #666;
+      }
+
+      @media (min-width: 600px) {
+        h1 { font-size: 2.4rem; }
+        h1 .marca { font-size: 2.8rem; }
+        .sub { font-size: 1.35rem; }
       }
     </style>
   </head>
   <body>
-    <div class="timer">
-      <div>
-        <span id="seconds">05</span>
-        <small>Segundos</small>
+    <div class="card">
+      <div class="logo-marca">
+        <Image src={covaroLogo} alt="Logo Covaro" width={120} height={120} />
       </div>
+
+      <div class="check">✅</div>
+
+      <h1>
+        ¡Registro confirmado!
+        <span class="marca">Bellavista de Pacasmayo</span>
+      </h1>
+
+      <p class="sub">
+        <strong>¡IMPORTANTE!</strong> Únete ahora al grupo de WhatsApp.<br />
+        Allí te mandaremos todos los detalles del Zoom.
+      </p>
+
+      <div class="timer-wrap">
+        <div class="timer-label">Te redirigimos en</div>
+        <div class="timer-circle">
+          <span id="seconds">3</span>
+          <small>segundos</small>
+        </div>
+      </div>
+
+      <a href="https://chat.whatsapp.com/DXPWINlX4Mg6CLXzfiHGfk?mode=r_c" class="whatsapp-button" id="whatsappBtn" target="_blank">
+        <span class="wa-ico">📲</span>
+        <span>Unirme al grupo ahora</span>
+      </a>
+
+      <p class="hint">Si no se abre automáticamente, toca el botón verde.</p>
     </div>
-    <Image src={covaroLogo} alt="Logo Covaro" height={70} class="logo" />
-    <h2>¡IMPORTANTE! Únete al grupo ahora!</h2>
-    <h3>Allí te mandaremos todos los detalles del zoom</h3>
-    <a href="https://chat.whatsapp.com/DXPWINlX4Mg6CLXzfiHGfk?mode=r_c" class="whatsapp-button" id="whatsappBtn" target="_blank">
-      UNIRME AL GRUPO DE WHATSAPP AQUÍ
-    </a>
+
     <script>
       const whatsappLink = "https://chat.whatsapp.com/DXPWINlX4Mg6CLXzfiHGfk?mode=r_c";
-      let seconds = 5;
+      let seconds = 3;
       const secondsElement = document.getElementById('seconds');
       const whatsappBtn = document.getElementById('whatsappBtn');
-      
+
       // Solo disparar CompleteRegistration cuando el usuario hace clic
       whatsappBtn.addEventListener('click', () => {
         fbq('track', 'CompleteRegistration');
       });
-      
+
       const interval = setInterval(() => {
         seconds--;
-        secondsElement.textContent = String(seconds).padStart(2, '0');
+        secondsElement.textContent = String(seconds);
         if (seconds <= 0) {
           clearInterval(interval);
           window.location.href = whatsappLink;
